@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6d25c6d0-b127-4817-b190-3fda78156ce6}</ProjectGuid>
+    <ProjectGuid>{c99f7382-6840-4812-b673-0727e618302b}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ORBIS'" Label="Configuration">
@@ -58,16 +58,16 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\StubMaker\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\StubMaker\Include;$(SolutionDir)External\FusionShared;$(SolutionDir)External\libFusionDriver\libFusionDriver;$(SolutionDir)External\libUtils\libUtils;$(SolutionDir)External\libUtils\libSysInt</AdditionalIncludeDirectories>
       <CppExceptions>true</CppExceptions>
       <CppLanguageStd>Cpp17</CppLanguageStd>
     </ClCompile>
     <Link>
       <Addressing>NonAslr</Addressing>
-      <AdditionalLibraryDirectories>$(SolutionDir)External\StubMaker\Build</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)External\StubMaker\Build;$(SolutionDir)External\libFusionDriver\Build;$(SolutionDir)External\libUtils\Build</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>py "$(SolutionDir)Scripts\make_fself.py" "$(OutputPath)$(TargetName).elf" "$(OutputPath)eboot.bin"</Command>
+      <Command>py "$(SolutionDir)Scripts\make_fself.py" "$(OutputPath)$(TargetName).elf" "$(OutputPath)eboot.bin" --paid 0x3800000000010003 --auth-info 070000000000003800000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ORBIS'">
@@ -90,10 +90,26 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActiveClient.h" />
+    <ClInclude Include="BaseClient.h" />
+    <ClInclude Include="DirectoryProvider.h" />
+    <ClInclude Include="FileClient.h" />
+    <ClInclude Include="FTPClient.h" />
+    <ClInclude Include="MainListener.h" />
+    <ClInclude Include="Misc.h" />
+    <ClInclude Include="PassiveClient.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActiveClient.cpp" />
+    <ClCompile Include="BaseClient.cpp" />
+    <ClCompile Include="DirectoryProvider.cpp" />
+    <ClCompile Include="FileClient.cpp" />
+    <ClCompile Include="FTPClient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainListener.cpp" />
+    <ClCompile Include="Misc.cpp" />
+    <ClCompile Include="PassiveClient.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ORBIS'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ORBIS'">Create</PrecompiledHeader>

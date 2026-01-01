@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;cc;s;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;pssli</Extensions>
+    </Filter>
+    <Filter Include="Source Files\FTP">
+      <UniqueIdentifier>{09364942-acab-4ffc-bf51-59f98b3aade8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FTP">
+      <UniqueIdentifier>{1b3915c4-6e5f-40e4-a366-ace71cc1a3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FTP\Transfer">
+      <UniqueIdentifier>{ae454fe2-d841-4761-bd7e-d4de810ecdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FTP\Transfer">
+      <UniqueIdentifier>{df72306a-3dd3-4e77-b484-1493291aee2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainListener.h">
+      <Filter>Header Files\FTP</Filter>
+    </ClInclude>
+    <ClInclude Include="FTPClient.h">
+      <Filter>Header Files\FTP</Filter>
+    </ClInclude>
+    <ClInclude Include="FileClient.h">
+      <Filter>Header Files\FTP</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryProvider.h">
+      <Filter>Header Files\FTP</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveClient.h">
+      <Filter>Header Files\FTP\Transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseClient.h">
+      <Filter>Header Files\FTP\Transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="PassiveClient.h">
+      <Filter>Header Files\FTP\Transfer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectoryProvider.cpp">
+      <Filter>Source Files\FTP</Filter>
+    </ClCompile>
+    <ClCompile Include="FileClient.cpp">
+      <Filter>Source Files\FTP</Filter>
+    </ClCompile>
+    <ClCompile Include="FTPClient.cpp">
+      <Filter>Source Files\FTP</Filter>
+    </ClCompile>
+    <ClCompile Include="MainListener.cpp">
+      <Filter>Source Files\FTP</Filter>
+    </ClCompile>
+    <ClCompile Include="PassiveClient.cpp">
+      <Filter>Source Files\FTP\Transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseClient.cpp">
+      <Filter>Source Files\FTP\Transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="ActiveClient.cpp">
+      <Filter>Source Files\FTP\Transfer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

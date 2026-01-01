@@ -1,0 +1,9 @@
+[submodule "External/StubMaker"]
+	path = External/StubMaker
+	url = https://github.com/OSM-Made/StubMaker
+[submodule "External/libUtils"]
+	path = External/libUtils
+	url = https://github.com/AetherPS/libUtils
+[submodule "External/libFusionDriver"]
+	path = External/libFusionDriver
+	url = https://github.com/AetherPS/libFusionDriver
