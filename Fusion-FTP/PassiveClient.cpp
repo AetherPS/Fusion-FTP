@@ -23,14 +23,14 @@ PassiveClient::PassiveClient(SceNetId s, SceNetInAddr localAddr)
 	auto bindError = sceNetBind(ServerSocket, (SceNetSockaddr*)&ServerAddr, sizeof(ServerAddr));
 	if (bindError != 0)
 	{
-		Logger::Error("Failed to bind Listener\nErrorno: %llX\n", bindError);
+		Logger::Error("Failed to bind Listener\nErrorno: %llX", bindError);
 		return;
 	}
 
 	auto listenError = sceNetListen(ServerSocket, 100);
 	if (listenError != 0)
 	{
-		Logger::Error("Failed to start listening on Socket.\n\nErrorno: %llX\n", listenError);
+		Logger::Error("Failed to start listening on Socket.\n\nErrorno: %llX", listenError);
 		return;
 	}
 

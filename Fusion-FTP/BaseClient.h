@@ -25,7 +25,7 @@ public:
 	{
 		if (ClientSocket == -1)
 		{
-			Logger::Error("SendMessage when socket not connected.\n");
+			Logger::Error("SendMessage when socket not connected.");
 			return;
 		}
 
@@ -36,7 +36,7 @@ public:
 	{
 		if (ClientSocket == -1)
 		{
-			Logger::Error("SendMessage when socket not connected.\n");
+			Logger::Error("SendMessage when socket not connected.");
 			return false;
 		}
 
@@ -47,7 +47,7 @@ public:
 	{
 		if (ClientSocket == -1)
 		{
-			Logger::Error("SendMessage when socket not connected.\n");
+			Logger::Error("SendMessage when socket not connected.");
 			return -1;
 		}
 

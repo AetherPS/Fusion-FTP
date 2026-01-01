@@ -61,7 +61,7 @@ void FileClient::GetFile(CommandArgs)
 	{
 		if (!inst->Client->SendData(buffer.get(), dataRead))
 		{
-			Logger::Info("Abort\n");
+			Logger::Info("Abort");
 			break;
 		}
 	}
@@ -96,7 +96,7 @@ void FileClient::SendFile(CommandArgs)
 	{
 		if (sceKernelWrite(fd, buffer.get(), dataRecieved) < 0)
 		{
-			Logger::Error("File write failed.\n");
+			Logger::Error("File write failed.");
 			break;
 		}
 	}

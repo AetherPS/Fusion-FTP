@@ -5,7 +5,7 @@ FTP daemon for the Fusion homebrew enabler on PlayStation 4.
 ## Features
 
 - Full FTP server implementation for PS4
-- Passive mode support
+- Active and passive mode support
 - System partition remounting (R/W access to `/system` and `/system_ex`)
 - Multi-threaded connection handling
 - Process filesystem mounting

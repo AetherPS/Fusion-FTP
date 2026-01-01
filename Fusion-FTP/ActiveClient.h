@@ -3,9 +3,11 @@
 class ActiveClient : public BaseClient
 {
 public:
-	ActiveClient();
+	ActiveClient(SceNetId s, std::string portArgs);
 	~ActiveClient();
 
-private:
+	virtual SceNetId Connect() override;
 
+private:
+	SceNetSockaddrIn ClientAddr;
 };

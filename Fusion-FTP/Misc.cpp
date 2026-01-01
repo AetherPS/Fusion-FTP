@@ -28,14 +28,14 @@ bool LoadModules()
 	res = sceNetInit();
 	if (res != 0)
 	{
-		Logger::Error("%s: sceNetInit failed\n", __FUNCTION__);
+		Logger::Error("%s: sceNetInit failed", __FUNCTION__);
 		return false;
 	}
 
 	res = sceNetCtlInit();
 	if (res != 0)
 	{
-		Logger::Error("%s: sceNetCtlInit failed (%llX)\n", __FUNCTION__, res);
+		Logger::Error("%s: sceNetCtlInit failed (%llX)", __FUNCTION__, res);
 		return false;
 	}
 

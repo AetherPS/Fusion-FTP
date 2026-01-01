@@ -5,7 +5,7 @@ bool DirectoryProvider::NavigateUp()
 {
 	if (CurrentDirectory.length() == 1 && CurrentDirectory == "/")
 	{
-		Logger::Error("Cant navigate up any more. We are at the root directory.\n");
+		Logger::Error("Cant navigate up any more. We are at the root directory.");
 		return false;
 	}
 
@@ -32,7 +32,7 @@ bool DirectoryProvider::SetAbsoluteDirectory(std::string path)
 	// Make sure the dir is valid.
 	if (sceKernelCheckReachability(path.c_str()) != 0)
 	{
-		Logger::Error("SetAbsoluteDirectory: Path %s is not valid.\n", path.c_str());
+		Logger::Error("SetAbsoluteDirectory: Path %s is not valid.", path.c_str());
 		return false;
 	}
 

@@ -54,7 +54,7 @@ void FTPClient::Passive(CommandArgs)
 
 void FTPClient::Active(CommandArgs)
 {
-	SendDataCRLF(s, "502 Command not implemented.");
+	inst->Client = std::make_unique<ActiveClient>(s, args);
 }
 
 void FTPClient::Type(CommandArgs)
@@ -77,7 +77,7 @@ void FTPClient::List(CommandArgs)
 	auto tempDirectory = inst->WorkingDirectory->CurrentDirectory;
 	if (args.size() > 1)
 	{
-		Logger::Info("List has dir arg: %s\n", args.c_str());
+		Logger::Info("List has dir arg: %s", args.c_str());
 		tempDirectory = args[1];
 	}
 
@@ -87,7 +87,7 @@ void FTPClient::List(CommandArgs)
 	int fd = sceKernelOpen(tempDirectory.data(), O_RDONLY, 0);
 	if (fd < 0)
 	{
-		Logger::Error("sceKernelOpen failed: 0x%08X\n", fd);
+		Logger::Error("sceKernelOpen failed: 0x%08X", fd);
 		SendDataCRLF(s, "550 Invalid directory.");
 
 		return;
@@ -100,7 +100,7 @@ void FTPClient::List(CommandArgs)
 	{
 		sceKernelClose(fd);
 
-		Logger::Error("sceKernelGetdents failed: 0x%08X\n", ret);
+		Logger::Error("sceKernelGetdents failed: 0x%08X", ret);
 		SendDataCRLF(s, "550 Invalid directory.");
 
 		return;
@@ -177,7 +177,7 @@ void FTPClient::MainLoop()
 		else
 		{
 			SendDataCRLF(Sock, "502 Command not implemented.");
-			Logger::Error("[FTP] Command %s is not implemented at this time.\n", args[0].c_str());
+			Logger::Error("[FTP] Command %s is not implemented at this time.", args[0].c_str());
 		}
 	}
 

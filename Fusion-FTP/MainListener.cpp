@@ -9,7 +9,7 @@ SceNetInAddr MainListener::LocalAddr;
 
 void MainListener::ListenerCallback(void* tdParam, SceNetId s, SceNetInAddr sin_addr)
 {
-	Logger::Info("New Client Connection: %i.%i.%i.%i\n",
+	Logger::Info("New Client Connection: %i.%i.%i.%i",
 		sin_addr.s_addr & 0xFF,
 		(sin_addr.s_addr >> 8) & 0xFF,
 		(sin_addr.s_addr >> 16) & 0xFF,
@@ -43,7 +43,7 @@ void MainListener::Init()
 
 	SetIPAddress();
 
-	Logger::Info("Listener Started %s:%d\n", IPAddress, FtpPort);
+	Logger::Info("Listener Started %s:%d", IPAddress, FtpPort);
 	NotifyCustom("", "Orbis FTP Running: %s:%d", IPAddress, FtpPort);
 }
 
