@@ -76,12 +76,12 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <OptimizationLevel>Level2</OptimizationLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\StubMaker\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\StubMaker\Include;$(SolutionDir)External\FusionShared;$(SolutionDir)External\libFusionDriver\libFusionDriver;$(SolutionDir)External\libUtils\libUtils;$(SolutionDir)External\libUtils\libSysInt</AdditionalIncludeDirectories>
       <CppExceptions>true</CppExceptions>
       <CppLanguageStd>Cpp17</CppLanguageStd>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)External\StubMaker\Build</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)External\StubMaker\Build;$(SolutionDir)External\libFusionDriver\Build;$(SolutionDir)External\libUtils\Build</AdditionalLibraryDirectories>
       <InfoStripping>StripSymsAndDebug</InfoStripping>
       <DataStripping>StripFuncsAndData</DataStripping>
       <DuplicateStripping>true</DuplicateStripping>

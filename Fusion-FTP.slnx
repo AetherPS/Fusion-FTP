@@ -2,5 +2,5 @@
   <Configurations>
     <Platform Name="ORBIS" />
   </Configurations>
-  <Project Path="Fusion-FTP/Fusion-FTP.vcxproj" />
+  <Project Path="Fusion-FTP/Fusion-FTP.vcxproj" Id="c99f7382-6840-4812-b673-0727e618302b" />
 </Solution>
