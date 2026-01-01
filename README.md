@@ -53,22 +53,6 @@ Navigate to `External\libUtils` and open `libUtils.sln` in Visual Studio. Build 
 2. Select your desired configuration (Debug/Release)
 3. Build the solution (Build > Build Solution or press F7)
 
-The build process will:
-- Compile the FTP daemon
-- Link against the PS4 SDK libraries
-- Execute post-build scripts using Python to create the final FSELF executable
-
-## Output
-
-The compiled output will be in the appropriate build directory (Debug/Release) with the final FSELF ready for deployment to a PS4 running the Fusion homebrew enabler.
-
-## Usage
-
-Deploy the built FSELF to your PS4 and launch it through the Fusion homebrew enabler. The FTP server will:
-- Start listening on the standard FTP port (21)
-- Provide access to the PS4 filesystem
-- Remount system partitions as read/write for extended access
-
 ## Project Structure
 
 ```
@@ -92,9 +76,8 @@ Fusion-FTP/
 
 ## Notes
 
-- This project requires a PlayStation 4 with the Fusion homebrew enabler installed
+- This project requires a PlayStation 4 with the Fusion or GoldHEN installed
 - The FTP daemon runs with elevated privileges and provides read/write access to system partitions
-- Ensure you have proper authorization before using this software on any PS4 system
 
 ## Contributing
 
