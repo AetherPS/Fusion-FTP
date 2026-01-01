@@ -24,14 +24,30 @@ const std::map<std::string, std::function<void(CommandArgs)>> FTPClient::Command
 	{ "RNFR", FileClient::RenameFrom },
 	{ "RNTO", FileClient::RenameTo },
 	{ "SIZE", FileClient::GetSize },
-
-	// APPE - The client provides the file name it wishes to use for the upload. 
-	//		  If the file already exists on the server, the data is appended to the existing file. 
-	//		  If the file does not exist, it is created. 
-	// 
-	// 
-	// REST - Specify a marker of where to resume a file transfer later.
-	// FEAT - Specify the extended features we support.
+	{ "MDTM", FileClient::GetModifiedTime },
+	{ "APPE", FileClient::AppendFile },
+	{ "NLST", NameList },
+	{ "REST", [](CommandArgs) 
+	{
+		inst->RestartPosition = std::stoll(args);
+		SendDataCRLF(s, va("350 Restarting at %lld. Send STOR or RETR to initiate transfer.", inst->RestartPosition));
+	}},
+	{ "ABOR", [](CommandArgs) 
+	{
+		inst->AbortTransfer = true;
+		SendDataCRLF(s, "226 ABOR command successful.");
+	}},
+	{ "NOOP", [](CommandArgs) { SendDataCRLF(s, "200 NOOP ok."); }},
+	{ "ALLO", [](CommandArgs) { SendDataCRLF(s, "202 No storage allocation necessary."); }},
+	{ "FEAT", [](CommandArgs) {
+		SendDataCRLF(s, "211-Features:");
+		SendDataCRLF(s, " SIZE");
+		SendDataCRLF(s, " MDTM");
+		SendDataCRLF(s, " REST STREAM");
+		SendDataCRLF(s, " PASV");
+		SendDataCRLF(s, " PORT");
+		SendDataCRLF(s, "211 End");
+	}},
 };
 
 void FTPClient::ChangeWorkingDir(CommandArgs)
@@ -146,6 +162,59 @@ continueList:
 	SendDataCRLF(s, "226 Transfer complete.");
 }
 
+void FTPClient::NameList(CommandArgs)
+{
+	auto tempDirectory = inst->WorkingDirectory->CurrentDirectory;
+	if (args.size() > 1)
+	{
+		Logger::Info("NameList has dir arg: %s", args.c_str());
+		tempDirectory = args;
+	}
+
+	char buf[16384];
+	SceKernelDirent* entry;
+
+	int fd = sceKernelOpen(tempDirectory.data(), O_RDONLY, 0);
+	if (fd < 0)
+	{
+		Logger::Error("sceKernelOpen failed: 0x%08X", fd);
+		SendDataCRLF(s, "550 Invalid directory.");
+		return;
+	}
+
+	memset(buf, 0, sizeof(buf));
+
+	int ret = sceKernelGetdents(fd, buf, sizeof(buf));
+	if (ret < 0)
+	{
+		sceKernelClose(fd);
+		Logger::Error("sceKernelGetdents failed: 0x%08X", ret);
+		SendDataCRLF(s, "550 Invalid directory.");
+		return;
+	}
+
+	SendDataCRLF(s, "150 Opening ASCII mode data transfer for NLST.");
+
+	inst->Client->Connect();
+
+	entry = (SceKernelDirent*)buf;
+	while (entry->d_fileno != 0)
+	{
+		// Skip . and ..
+		if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
+		{
+			inst->Client->SendMessage(std::string(entry->d_name));
+		}
+
+		entry = (SceKernelDirent*)((char*)entry + entry->d_reclen);
+	}
+
+	sceKernelClose(fd);
+	inst->Client.reset();
+
+	SendDataCRLF(s, "226 Transfer complete.");
+}
+
 void FTPClient::MainLoop()
 {
 	SendDataCRLF(Sock, "220 Welcome friend to Orbis FTP :)");
@@ -190,6 +259,8 @@ FTPClient::FTPClient(SceNetId s, SceNetInAddr addr, SceNetInAddr localAddr)
 	Address = addr;
 	LocalAddr = localAddr;
 	IsRunning = true;
+	RestartPosition = 0;
+	AbortTransfer = false;
 	WorkingDirectory = std::make_unique<DirectoryProvider>();
 
 	// Run the main loop.

@@ -14,6 +14,8 @@ public:
 
 	std::unique_ptr<DirectoryProvider> WorkingDirectory;
 	std::unique_ptr<BaseClient> Client;
+	off_t RestartPosition;
+	bool AbortTransfer;
 
 	FTPClient(SceNetId s, SceNetInAddr addr, SceNetInAddr localAddr);
 	~FTPClient();
@@ -24,6 +26,7 @@ private:
 	static void Active(CommandArgs);
 	static void Type(CommandArgs);
 	static void List(CommandArgs);
+	static void NameList(CommandArgs);
 
 	void MainLoop();
 };
