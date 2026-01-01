@@ -17,6 +17,7 @@ Before building this project, ensure you have the following installed:
 - **Official PlayStation 4 SDK** - Required for PS4 development
 - **Visual Studio** - For building the project and dependencies
 - **Python 3** - Required for build scripts
+- **7-Zip** - Required for packaging in post-build event
 
 ## Cloning
 
@@ -52,6 +53,8 @@ Navigate to `External\libUtils` and open `libUtils.sln` in Visual Studio. Build 
 1. Open `Fusion-FTP.slnx` in Visual Studio
 2. Select your desired configuration (Debug/Release)
 3. Build the solution (Build > Build Solution or press F7)
+
+**Note:** If 7-Zip is not installed in the default location (`C:\Program Files\7-Zip\7z.exe`), you may need to adjust the path in the project's post-build event settings.
 
 ## Project Structure
 

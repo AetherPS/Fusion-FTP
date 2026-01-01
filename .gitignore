@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# PS4 build outputs
+*.elf
+eboot.bin
+*.7z
